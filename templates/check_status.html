@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Gate Pass Status</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    <style>
+        #check_status {
+            padding: 40px;
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="header">
+        <a href="#"><img src="{{ url_for('static', filename='img/logo.png') }}" class="logo" alt="Logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a href="{{ url_for('student_dashboard') }}">HOME</a></li>
+                <li><a href="{{ url_for('apply') }}">APPLY</a></li>
+                <li><a class="active" href="{{ url_for('check_status') }}">CHECK STATUS</a></li>
+                <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                <li><a href="{{ url_for('contact') }}">CONTACT</a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        
+    </section>
+
+    <section id="check_status">
+        <h2>Your Gate Pass Request Status</h2>
+        {% if requests %}
+            <table>
+                <tr>
+                    
+                    <th>Reason</th>
+                    <th>Status</th>
+                    <th>Date Submitted</th>
+                </tr>
+                {% for request in requests %}
+                <tr>
+                    <td>{{ request.reason }}</td>
+                    <td>{{ request.status }}</td>
+                    <td>{{ request.date_submitted.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No gate pass requests found.</p>
+        {% endif %}
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

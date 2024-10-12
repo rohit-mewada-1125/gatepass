@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - APNA GATE PASS</title>
+    <!-- Use Flask url_for function for static file references -->
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <section id="header">
+        <a href="#"><img src="{{ url_for('static', filename='img/logo.png') }}" class="logo" alt="Logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a  href="{{ url_for('student_dashboard') }}">HOME</a></li>
+                <li><a href="{{ url_for('apply') }}">APPLY</a></li>
+                <li><a href="{{ url_for('check_status') }}">CHECK STATUS</a></li> <!-- New Link -->
+                <li><a class="active" href="{{ url_for('about') }}">ABOUT</a></li>
+                <li><a  href="{{ url_for('contact') }}">CONTACT</a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <i class="fal fa-shopping-cart"></i>
+            <i id="bar" class="fad fa-outdent"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-p1">
+        <h2>About Us</h2>
+        <p>At APNA GATE PASS, we are dedicated to ensuring a smooth and efficient process for obtaining gate passes.</p>
+        <p>Our team is committed to providing you with the best experience, simplifying your journey and helping you complete your tasks without hassle.</p>
+        <p>With a focus on customer satisfaction, we are always here to assist you with any inquiries and support you might need.</p>
+
+        <h3>Our Mission</h3>
+        <p>Our mission is to streamline the gate pass application process, making it accessible and efficient for everyone. We believe in providing quick service with a personal touch.</p>
+
+        <h3>Our Vision</h3>
+        <p>We envision a world where obtaining permissions is hassle-free and efficient, ensuring that everyone can focus on what matters most.</p>
+
+        <h3>Core Values</h3>
+        <ul>
+            <li><strong>Integrity:</strong> We uphold the highest standards of integrity in all our actions.</li>
+            <li><strong>Customer Focus:</strong> We prioritize our customers’ needs and strive to exceed their expectations.</li>
+            <li><strong>Innovation:</strong> We are committed to continuous improvement and embracing new ideas to serve you better.</li>
+            <li><strong>Teamwork:</strong> We believe in collaboration and working together towards common goals.</li>
+        </ul>
+
+        <h3>Contact Us</h3>
+        <p>If you have any questions or need assistance, feel free to reach out to us. Our support team is available to help you navigate the gate pass application process.</p>
+
+        <h3>Join Us</h3>
+        <p>We are always looking for talented individuals who are passionate about making a difference. Check our careers page for opportunities to join our team.</p>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

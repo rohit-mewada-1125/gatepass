@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOD Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+
+<body>
+    <section id="hod_dashboard">
+        <h2>Pending Gate Pass Requests</h2>
+
+        {% if pending_requests %}
+            <h3>Pending Requests</h3>
+            {% for date, requests in pending_requests.items() %}
+                <h4>{{ date }}</h4>
+                <table>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Branch</th>
+                        <th>Year</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for request in requests %}
+                    <tr>
+                        <td>{{ request.first_name }}</td>
+                        <td>{{ request.last_name }}</td>
+                        <td>{{ request.branch }}</td>
+                        <td>{{ request.year }}</td>
+                        <td>{{ request.reason }}</td>
+                        <td>{{ request.status }}</td>
+                        <td>
+                            <form action="{{ url_for('approve_request', request_id=request.id) }}" method="post" style="display:inline;">
+                                <button type="submit" class="normal">Approve</button>
+                            </form>
+                            <form action="{{ url_for('reject_request', request_id=request.id) }}" method="post" style="display:inline;">
+                                <button type="submit" class="normal" style="background-color: #f44336;">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endfor %}
+        {% else %}
+            <p>No pending requests at the moment.</p>
+        {% endif %}
+
+        <h2>Approved Gate Pass Requests</h2>
+        {% if approved_requests %}
+            {% for date, requests in approved_requests.items() %}
+                <h4>{{ date }}</h4>
+                <table>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Branch</th>
+                        <th>Year</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                    </tr>
+                    {% for request in requests %}
+                    <tr>
+                        <td>{{ request.first_name }}</td>
+                        <td>{{ request.last_name }}</td>
+                        <td>{{ request.branch }}</td>
+                        <td>{{ request.year }}</td>
+                        <td>{{ request.reason }}</td>
+                        <td>{{ request.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endfor %}
+        {% else %}
+            <p>No approved requests at the moment.</p>
+        {% endif %}
+
+        <h2>Rejected Gate Pass Requests</h2>
+        {% if rejected_requests %}
+            {% for date, requests in rejected_requests.items() %}
+                <h4>{{ date }}</h4>
+                <table>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Branch</th>
+                        <th>Year</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                    </tr>
+                    {% for request in requests %}
+                    <tr>
+                        <td>{{ request.first_name }}</td>
+                        <td>{{ request.last_name }}</td>
+                        <td>{{ request.branch }}</td>
+                        <td>{{ request.year }}</td>
+                        <td>{{ request.reason }}</td>
+                        <td>{{ request.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endfor %}
+        {% else %}
+            <p>No rejected requests at the moment.</p>
+        {% endif %}
+    </section>
+</body>
+
+</html>

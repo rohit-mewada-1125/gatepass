@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - APNA GATE PASS</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <section id="header">
+        <a href="#"><img src="{{ url_for('static', filename='img/logo.png') }}" class="logo" alt="Logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a  href="{{ url_for('student_dashboard') }}">HOME</a></li>
+                <li><a href="{{ url_for('apply') }}">APPLY</a></li>
+                <li><a href="{{ url_for('check_status') }}">CHECK STATUS</a></li> <!-- New Link -->
+                <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                <li><a class="active" href="{{ url_for('contact') }}">CONTACT</a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        <div id="mobile">
+            <i class="fal fa-shopping-cart"></i>
+            <i id="bar" class="fad fa-outdent"></i>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-p1">
+        <h2>Contact Us</h2>
+        <!-- Form to handle contact messages -->
+        <form method="POST" action="{{ url_for('handle_contact') }}">
+            <div class="inputbox">
+                <input type="text" name="name" required="required">
+                <span>Full Name</span>
+                <i></i>
+            </div>
+            <div class="inputbox">
+                <input type="email" name="email" required="required">
+                <span>Email</span>
+                <i></i>
+            </div>
+            <div class="inputbox">
+                <textarea name="message" required="required" rows="4"></textarea>
+                <span>Message</span>
+                <i></i>
+            </div>
+            <div class="inputbox">
+                <input type="submit" value="Send Message">
+            </div>
+        </form>
+        
+        <!-- Address Section -->
+        <div class="address">
+            <h4>Address:</h4>
+            <p>1234 Gate Pass St.<br>Your City, Your Country</p>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

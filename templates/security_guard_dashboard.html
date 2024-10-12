@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Guard Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    <style>
+        /* General styles for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        /* Style for table headers */
+        th {
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            padding: 10px;
+        }
+
+        /* Style for table data cells */
+        td {
+            border: 1px solid #ddd; /* Light gray border */
+            padding: 8px;
+        }
+
+        /* Hover effect for table rows */
+        tr:hover {
+            background-color: #f1f1f1; /* Light gray background on hover */
+        }
+
+        /* Style for no data message */
+        p {
+            font-size: 18px;
+            color: #555;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>Accepted Gate Pass Requests</h2>
+    {% if accepted_requests %}
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Branch</th>
+                <th>Year</th>
+                <th>Reason</th>
+                <th>Date Submitted</th>
+            </tr>
+            {% for request in accepted_requests %}
+            <tr>
+                <td>{{ request.first_name }}</td>
+                <td>{{ request.last_name }}</td>
+                <td>{{ request.branch }}</td>
+                <td>{{ request.year }}</td>
+                <td>{{ request.reason }}</td>
+                <td>{{ request.date_submitted.strftime('%Y-%m-%d %H:%M:%S') }}</td>  <!-- Format date -->
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No accepted requests at the moment.</p>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" crossorigin="anonymous">
+    <style>
+        /* Existing styles */
+        .hand {
+            font-size: 100px; /* Increased size */
+            animation-name: wave-animation;
+            animation-duration: 2.5s;
+            animation-iteration-count: infinite;
+            transform-origin: 70% 70%;
+            display: inline-block;
+        }
+        .absolute {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center; /* Center the text */
+        }
+        h3 {
+            font-family: monospace;
+            font-size: 40px; /* Increased size */
+        }
+        @keyframes wave-animation {
+            0% { transform: rotate(0.0deg); }
+            10% { transform: rotate(14.0deg); }
+            20% { transform: rotate(-8.0deg); }
+            30% { transform: rotate(14.0deg); }
+            40% { transform: rotate(-4.0deg); }
+            50% { transform: rotate(10.0deg); }
+            60% { transform: rotate(0.0deg); }
+        }
+        #logreg-forms {
+            width: 412px;
+            margin: 10vh auto;
+            background-color: #f3f3f3;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+            display: none; /* Initially hide the form */
+        }
+        #logreg-forms form {
+            width: 100%;
+            max-width: 410px;
+            padding: 15px;
+            margin: auto;
+        }
+        #logreg-forms .form-control {
+            position: relative;
+            box-sizing: border-box;
+            height: auto;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #logreg-forms .form-control:focus { z-index: 2; }
+        #logreg-forms .form-reset { display: none; }
+
+        .social-login {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+        .social-btn {
+            flex: 1;
+            margin: 0 5px; /* Add some spacing between buttons */
+        }
+
+        /* Mobile */
+        @media screen and (max-width: 500px) {
+            #logreg-forms { width: 300px; }
+        }
+    </style>
+    <title>Apna Gatepass Login</title>
+</head>
+<body>
+
+    <div class="absolute" id="welcome">
+        <span class="hand">👋</span>
+        <h3>WELCOME</h3>
+    </div>
+    <div id="logreg-forms">
+        <form class="form-signin" id="login-form">
+            <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+            <div class="social-login">
+                <button class="btn btn-primary social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with Facebook</span></button>
+                <button class="btn btn-danger social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with Google</span></button>
+            </div>
+            <p style="text-align:center"> OR </p>
+            <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <button class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+            <a href="#" id="forgot_pswd">Forgot password?</a>
+        </form>
+
+        <form class="form-reset">
+            <input type="email" id="resetEmail" class="form-control" placeholder="Email address" required autofocus>
+            <button class="btn btn-primary btn-block" type="submit">Reset Password</button>
+            <a href="#" id="cancel_reset"><i class="fas fa-angle-left"></i> Back</a>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        // Show animation for 2.5 seconds, then hide and show the main content
+        setTimeout(function() {
+            document.getElementById('welcome').style.display = 'none'; // Hide welcome message
+            document.getElementById('logreg-forms').style.display = 'block'; // Show main content
+        }, 2500);
+
+        function toggleResetPswd(e) {
+            e.preventDefault();
+            $('#logreg-forms .form-signin').toggle();
+            $('#logreg-forms .form-reset').toggle();
+        }
+
+        $(document).ready(function() {
+            $('#logreg-forms #forgot_pswd').click(toggleResetPswd);
+            $('#logreg-forms #cancel_reset').click(toggleResetPswd);
+
+            // Handle login form submission
+            $('#login-form').on('submit', function(e) {
+                e.preventDefault();
+                const username = $('#inputUsername').val();
+                const password = $('#inputPassword').val();
+
+                $.ajax({
+                    url: '/login',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ username, password }),
+                    success: function(response) {
+                        alert(response.message);
+                        // Redirect to the appropriate dashboard
+                        window.location.href = response.redirect_url; // Redirect based on the response
+                    },
+                    error: function(xhr) {
+                        alert(xhr.responseJSON.message);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

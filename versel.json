@@ -1,0 +1,20 @@
+
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.py"
+    }
+  ],
+  "env": {
+    "SQLALCHEMY_DATABASE_URI": "mysql://sql12737165:fKiQFzY8et@sql12.freesqldatabase.com/sql12737165",
+    "SECRET_KEY": "4vVHzUbjPhBdt+TPaOorZv1Bg1+qNNrc"
+  }
+}

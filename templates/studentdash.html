@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APNA GATE PASS</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+</head>
+
+<body>
+    <section id="header">
+        <a href="#"><img src="{{ url_for('static', filename='img/logo.png') }}" class="logo" alt="Logo"></a>
+        <div>
+            <ul id="navbar">
+                <li><a class="active" href="{{ url_for('student_dashboard') }}">HOME</a></li>
+                <li><a href="{{ url_for('apply') }}">APPLY</a></li>
+                <li><a href="{{ url_for('check_status') }}">CHECK STATUS</a></li> <!-- New Link -->
+                <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+                <li><a href="{{ url_for('contact') }}">CONTACT</a></li>
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+            </ul>
+        </div>
+        
+        
+    </section>
+
+    <section id="hero">
+        <h4>Don’t Wait!</h4>
+        <h2>Apply for gate pass</h2>
+        <h1>Get permission</h1>
+        <p>Complete your important tasks without any hassle!</p>
+        <a href="{{ url_for('apply') }}"><button><i class="fas fa-check"></i>Apply Now</button></a>
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

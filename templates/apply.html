@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gate-pass Request - APNA GATE PASS</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style1.css') }}">
+    <style>
+        /* Additional CSS for the Gate-pass Request Form */
+        #request {
+            padding: 40px;
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .input-group input,
+        textarea {
+            width: 48%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .home-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="{{ url_for('student_dashboard') }}" class="home-button">Home</a>
+    
+    <section id="request">
+        <h2>Gate-pass Request</h2>
+        <form action="{{ url_for('submit_gate_pass') }}" method="post"> 
+            <div class="input-group">
+                <input type="text" id="first-name" name="first-name" placeholder="First Name" value="{{ student.firstname }}" readonly required>
+                <input type="text" id="last-name" name="last-name" placeholder="Last Name" value="{{ student.lastname }}" readonly required>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="branch" name="branch" placeholder="Branch" value="{{ student.branch }}" readonly required>
+                <input type="text" id="year" name="year" placeholder="Year" value="{{ student.year }}" readonly required>
+            </div>
+
+            <label for="reason">Reason</label>
+            <textarea id="reason" name="reason" rows="4" placeholder="Enter your reason here..." required></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
