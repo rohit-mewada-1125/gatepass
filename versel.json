@@ -9,7 +9,73 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/login",
+      "methods": ["POST"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/",
+      "methods": ["GET"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/login",
+      "methods": ["GET"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/logout",
+      "methods": ["GET"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/hod_dashboard",
+      "methods": ["GET"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/apply",
+      "methods": ["GET"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/submit-gate-pass",
+      "methods": ["POST"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/approve-request/(.*)",
+      "methods": ["POST"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/reject-request/(.*)",
+      "methods": ["POST"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/about",
+      "methods": ["GET"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/handle_contact",
+      "methods": ["POST"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/contact",
+      "methods": ["GET"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/check_status",
+      "methods": ["GET"],
+      "dest": "app.py"
+    },
+    {
+      "src": "/security_guard_dashboard",
+      "methods": ["GET"],
       "dest": "app.py"
     }
   ],
